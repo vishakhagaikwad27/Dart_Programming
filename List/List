@@ -1,0 +1,76 @@
+void main() {
+  List<int> numbers = [];
+
+  addItem(numbers, 10);
+  addItem(numbers, 20);
+  addItem(numbers, 30);
+  print('List after adding items: $numbers');
+
+  deleteItem(numbers, 20);
+  print('List after deleting 20: $numbers');
+
+  print('Is 30 in the list? ${searchItem(numbers, 30)}');
+  print('Is 50 in the list? ${searchItem(numbers, 50)}');
+
+  addItem(numbers, 40);
+  addItem(numbers, 50);
+  print('List: $numbers');
+
+  print('Sum: ${sum(numbers)}');
+  print('Average: ${average(numbers)}');
+  print('Max: ${findMax(numbers)}');
+  print('Min: ${findMin(numbers)}');
+  print('Sorted Ascending: ${sortAscending(numbers)}');
+  print('Sorted Descending: ${sortDescending(numbers)}');
+  print('Even Numbers: ${evenNumbers(numbers)}');
+  print('Odd Numbers: ${oddNumbers(numbers)}');
+}
+
+void addItem(List<int> list, int value) {                          /// Function to add item
+  list.add(value);
+}
+
+void deleteItem(List<int> list, int value) {                       /// Function to delete item
+  list.remove(value);
+}
+
+bool searchItem(List<int> list, int value) {                      /// Function to search for item
+  return list.contains(value);
+}
+
+int sum(List<int> list) {                                         /// Sum of list elements
+  return list.fold(0, (a, b) => a + b);
+}
+
+double average(List<int> list) {                                   /// Average of list elements
+  if (list.isEmpty) return 0;
+  return sum(list) / list.length;
+}
+
+int findMax(List<int> list) {                                      /// Find maximum
+  return list.reduce((a, b) => a > b ? a : b);
+}
+
+int findMin(List<int> list) {                                      /// Find minimum
+  return list.reduce((a, b) => a < b ? a : b);
+}
+
+List<int> sortAscending(List<int> list) {                          /// Sort ascending
+  List<int> sorted = List.from(list);
+  sorted.sort();
+  return sorted;
+}
+
+List<int> sortDescending(List<int> list) {                         /// Sort descending
+  List<int> sorted = List.from(list);
+  sorted.sort((a, b) => b.compareTo(a));
+  return sorted;
+}
+
+List<int> evenNumbers(List<int> list) {                             /// Even numbers
+  return list.where((n) => n % 2 == 0).toList();
+}
+
+List<int> oddNumbers(List<int> list) {                              /// Odd numbers
+  return list.where((n) => n % 2 != 0).toList();
+}
